@@ -1,0 +1,6 @@
+com\example\hackerrank\HackerRankApplication.class
+com\example\hackerrank\PersonController.class
+com\example\hackerrank\repositories\PersonRepository.class
+com\example\hackerrank\services\PersonService.class
+com\example\hackerrank\ServletInitializer.class
+com\example\hackerrank\entities\PersonEntity.class
