@@ -1,0 +1,77 @@
+<html>
+
+<head>
+    <title>Hacker Rank Tool</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap-reboot.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-grid.min.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+
+</head>
+
+<body class="bg-light">
+
+
+    <div id="content" class="p-3">
+
+        <div>
+            <h3 class="display-4"> Hacker Rank App </h3>
+        </div>
+        <div>
+            <a href="add.html" class="btn btn-primary">add new </a></br></br></br>
+        </div>
+        <div class="row mx-md-n5" style="width:700px;">
+
+            <div class="col px-md-5 bg-light" style="width: 300px !important;">
+                <div id="person_list"></div>
+            </div>
+
+            <div class="col px-md-5" id="person_details" style="width: 300px !important;">
+
+                <div>
+                    <label><b>ID: </b></label>
+                    <label id="d_id"></label>
+                </div>
+                <div>
+                    <label><b>First Name: </b></label>
+                    <label id="d_f_name"></label>
+                </div>
+                <div>
+                    <label><b>Last Name: </b> </label>
+                    <label id="d_l_name"></label>
+                </div>
+                <div>
+                    <label><b>Age Name: </b></label>
+                    <label id="d_age"></label>
+                </div>
+                <div>
+                    <label><b>Favourtie Colour:</b></label>
+                    <label id="d_colour"></label>
+                </div>
+
+                <div>
+                    <label><b>Hobby:</b> </label><br />
+                    <label id="d_hobbies"></label>
+                </div>
+                <div class="row mx-md-n5">
+
+                    <div class="col px-md-3"> <input class="btn btn-primary" type="button" value="udpdate"
+                            onclick="updateclicked()" /></div>
+                    <div class="col px-md-3"> <input class="btn btn-danger" type="button" value="delete"
+                            onclick="deleteItem()" /></div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <script src="main.js"></script>
+
+</body>
+
+</html>
