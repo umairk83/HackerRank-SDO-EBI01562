@@ -38,20 +38,27 @@ function itemClicked(id) {
             var hobby = data.hobby;
             var id = data.id;
 
-            var hobbies = "<ol>";
-
-            hobby.forEach(function (element) {
-                hobbies += '<li>' + element + '</li>';
-            })
-
-            hobbies = hobbies + "</ol>";
-
             $('#d_id').text(id);
             $('#d_f_name').text(firstName);
             $('#d_age').text(age);
             $('#d_l_name').text(lastName);
             $('#d_colour').text(favouriteColour);
-            $('#d_hobbies').html(hobbies);
+
+            if (hobby && hobby.length != 0) {
+                var hobbies = "<ol>";
+
+                hobby.forEach(function (element) {
+                    hobbies += '<li>' + element + '</li>';
+                })
+    
+                hobbies = hobbies + "</ol>";
+    
+                $('#d_hobbies').html(hobbies);    
+            } else {
+
+                var hobbies = "<span>Not present</span>";
+                $('#d_hobbies').html(hobbies);    
+            }
 
             $('#person_details').show("slow");
         }
@@ -92,7 +99,7 @@ function submit() {
     var add_colour = $('#add_colour').val();
     var add_hobbies = $('#add_hobbies').val();
 
-    var hobbies = add_hobbies.split(",");
+    var hobbies = add_hobbies.trim() == "" ? null : add_hobbies.split(",");
 
     var person = {};
 
@@ -112,9 +119,6 @@ function submit() {
         url: '/persons/saveperson',
         type: 'PUT',
         data: JSON.stringify(person_list),
-        success: function () {
-            parent.history.back();
-        },
         complete: function () {
             parent.history.back();
         }
@@ -146,21 +150,25 @@ function updateload() {
             var lastName = data.last_name;
             var age = data.age;
             var favouriteColour = data.favourite_colour;
-            var hobby = data.hobby;
-
-            var hobbies = "";
-
-            hobby.forEach(function (element) {
-                hobbies += element + ", ";
-            });
-
-            hobbies = hobbies.replace(/(^\s*,)|(,\s*$)/g, '');
 
             $('#u_f_name').val(firstName);
             $('#u_age').val(age);
             $('#u_l_name').val(lastName);
             $('#u_colour').val(favouriteColour);
-            $('#u_hobbies').val(hobbies);
+
+            var hobby = data.hobby;
+
+            if (hobby && hobby.length != 0) {
+                var hobbies = "";
+                hobby.forEach(function (element) {
+                    hobbies += element + ", ";
+                });
+    
+                hobbies = hobbies.replace(/(^\s*,)|(,\s*$)/g, '');
+    
+                $('#u_hobbies').val(hobbies);    
+            }
+            
 
         }
     });
@@ -179,8 +187,8 @@ function updateItem() {
 
     u_hobbies = u_hobbies.replace(/(^\s*,)|(,\s*$)/g, '');
 
-    var hobbies = u_hobbies.split(",");
-
+    var hobbies = u_hobbies.trim() == "" ? null : u_hobbies.split(",");
+    
     var person = {};
 
     person.first_name = u_f_name;
@@ -189,8 +197,6 @@ function updateItem() {
     person.favourite_colour = u_colour;
     person.hobby = hobbies;
     person.id = id;
-
-    console.log(person);
 
     $.ajax({
         dataType: "json",
@@ -204,4 +210,3 @@ function updateItem() {
         }
     });
 }
-
